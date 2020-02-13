@@ -3,12 +3,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "common" {
-  name     = "tf-ref-common-rg"
+  name     = "RG-Common-Resources"
   location = var.location
 }
 
 resource "azurerm_key_vault" "common" {
-  name                        = "tf-ref-common-kv"
+  name                        = "Key-Vault-fan-eastus"
   location                    = azurerm_resource_group.common.location
   resource_group_name         = azurerm_resource_group.common.name
   enabled_for_disk_encryption = true
@@ -18,7 +18,7 @@ resource "azurerm_key_vault" "common" {
 }
 
 resource "azurerm_container_registry" "common" {
-  name                = "tfrefcommonacr"
+  name                = "acrfan2020"
   resource_group_name = azurerm_resource_group.common.name
   location            = azurerm_resource_group.common.location
   sku                 = "Premium"
